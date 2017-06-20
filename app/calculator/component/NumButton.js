@@ -13,16 +13,19 @@ const mapStateToProps = (state) => {
 class NumButton extends Component {
   constructor(props) {
     super(props);
-    this.state = {number: 0};
+    this.state = {decimalTrigger: false};
   }
 
 
   _onPressButton = () => {
     const {dispatch,val} = this.props
     //dispatch(actionCreators.display())
-    if (val =='+') return
-    else if(val !='÷' && val !='x' && val !='-' && val !='+' && val !='=')
-    dispatch({type: "DISPLAY", payload: val})
+    if (val =='+') dispatch({type: "ADD"})
+    else if (val =='-') dispatch({type: "MINUS"})
+    else if (val =='x') dispatch({type: "MULTIPLY"})
+    else if (val =='÷') dispatch({type: "DIVIDE"})
+    else if (val =='=') dispatch({type: "CALCULATE"})
+    else dispatch({type: "DISPLAY", payload: val})
   }
   render() {
       const {val} = this.props
